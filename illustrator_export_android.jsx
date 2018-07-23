@@ -106,6 +106,48 @@ function exportAppIconAndroid(file_name, folder_path) {
   }
 }
 
+function exportOriginalAppIconAndroid(artboard_name, folder_path) {
+  if (app.documents.length > 0) {
+    var opt = new ExportOptionsPNG24();
+    var type = ExportType.PNG24;
+    
+    var file_name = 'ic_launcher';
+    var prefix = 'mipmap-';
+    
+    var scales = [
+      ['48', 'mdpi'],
+      ['72', 'hdpi'],
+      ['96', 'xhdpi'],
+      ['144', 'xxhdpi'],
+      ['192', 'xxxhdpi'],
+    ];
+    
+    var suffix = '';
+    
+    for (var i in scales) {
+      var scale = scales[i];
+      if (artboard_name.indexOf(scale[0]) != -1) {
+        suffix = scale[1];
+        break;
+      }
+    }
+    if (!suffix) return;
+    
+    createFolder(folder_path);
+    
+    var imageFolder = folder_path + prefix + suffix;
+    createFolder(imageFolder);
+    
+    var fp = imageFolder + '/' + file_name;
+    var spec = new File(fp);
+    
+    opt.artBoardClipping = true;
+    opt.transparency = true;
+    
+    docRef.exportFile(spec, type, opt);
+  }
+}
+
 
 function runImage() {
   var folder_path = export_path + getDocName() + '/';
@@ -125,7 +167,7 @@ function runImage() {
 }
 
 
-function runIcon() {
+function runIcon(scaleImage) {
   var folder_path = export_path + getDocName() + '/';
   
   var count = 0;
@@ -135,13 +177,18 @@ function runIcon() {
     docRef.artboards.setActiveArtboardIndex(i);
     
     var file_name = artboard.name;
-    exportAppIconAndroid(file_name, folder_path);
+    if (scaleImage) {
+      exportAppIconAndroid(file_name, folder_path);
+    }
+    else {
+      exportOriginalAppIconAndroid(file_name, folder_path);
+    }
+    
     count++;
   }
   
   alert('PNG exported: ' + count + ' artboards');
 }
-
 
 function test() {
   var docName = docRef.name;
@@ -167,6 +214,7 @@ function test() {
 
 
 // ----------------------------
-runImage();
-// runIcon();
+// runImage();
+// runIcon(true);
+runIcon(false);
 // test();
