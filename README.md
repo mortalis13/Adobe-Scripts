@@ -1,4 +1,3 @@
-
 To run a script:
 
 - File -> Scripts -> Other Script -> select script file (.jsx)
