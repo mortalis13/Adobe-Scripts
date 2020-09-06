@@ -1,16 +1,17 @@
 To run a script:
 
-- File -> Scripts -> Other Script -> select script file (.jsx)
+- for **Illustrator**: File -> Scripts -> Other Script... -> select a .jsx file (`Shift+F12`)
+- for **Photoshop**: File -> Scripts -> Browse...
 
-To add a script to the menu:
+To add a script to the menu `File -> Scripts`:
 
 - Go to Adobe product install folder
-- Then to folder Presets/en_US/Scripts
+- Then to folder `Presets/en_US/Scripts`
 - Put a .jsx file there
 - Restart the program
 
-In **Photoshop** it's possible to assign a shortcut to a script (from Edit -> Keyboard Shortcuts menu).
-**Illustrator** (CC 2015) doesn't allow it, so I put *'a_'* before the script name and used **Alt + F + R + Enter** to quickly execute it. 
+In **Photoshop** it's possible to assign a shortcut to a script (from `Edit -> Keyboard Shortcuts` menu).  
+**Illustrator** (CC 2015) doesn't allow it, so I put *'a_'* before the script name and use **Alt + F + R + Enter** to quickly execute it. 
 
 ## References
 
